@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style>
+      iframe {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!--<script type="module" src="https://unpkg.com/x-frame-bypass"></script>-->
+    <iframe id="temp" src="javascript:void(0);" sandbox="allow-same-origin"></iframe>
+    <script type="text/javascript">
+      id1 = Math.ceil(Math.random() * 36).toString(36)
+      id2 = Math.ceil(Math.random() * 36).toString(36)
+      id3 = Math.ceil(Math.random() * 36).toString(36)
+      id4 = Math.ceil(Math.random() * 36).toString(36)
+      id5 = Math.ceil(Math.random() * 36).toString(36)
+      id6 = Math.ceil(Math.random() * 36).toString(36)
+      id = id1 + id2 + id3 + id4 + id5 + id6
+      url = "https://prnt.sc/" + id
+
+      //window.open("https://prnt.sc/" + id)
+
+      /*iframe = document.createElement('iframe', { is: 'x-frame-bypass' })
+      //document.domain = "prnt.sc"
+      iframe.src = "https://prnt.sc/" + id
+      document.body.appendChild(document.createTextNode(url))
+      document.body.appendChild(iframe)*/
+      fetch("https://cors-anywhere.herokuapp.com/" + url).then(res => {
+        res.text().then(data => {
+          document.body.appendChild(document.createTextNode(url))
+          iframe = document.getElementById('temp')
+          iframe.contentWindow.document.open();
+          iframe.contentWindow.document.write(data)
+          iframe.contentWindow.document.close();
+          iframe.onload = function() {
+            image = iframe.contentWindow.document.getElementById("screenshot-image")
+            fetch("https://cors-anywhere.herokuapp.com/" + image.src).then(res => {
+              res.blob().then(blob => {
+                image_url = URL.createObjectURL(blob)
+                image = document.createElement('img')
+                image.src = image_url
+                document.body.appendChild(image)
+              })
+            })
+          }
+        })
+      });
+    </script>
+  </body>
+</html>
