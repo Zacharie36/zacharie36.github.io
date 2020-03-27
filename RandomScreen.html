@@ -37,7 +37,7 @@
           iframe.contentWindow.document.close();
           iframe.onload = function() {
             image = iframe.contentWindow.document.getElementById("screenshot-image")
-            fetch("https://cors-anywhere.herokuapp.com/" + image.src).then(res => {
+            fetch(image.src).then(res => {
               res.blob().then(blob => {
                 image_url = URL.createObjectURL(blob)
                 image = document.createElement('img')
