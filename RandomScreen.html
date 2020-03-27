@@ -38,7 +38,7 @@
           iframe.onload = function() {
             image_src = iframe.contentWindow.document.getElementById("screenshot-image").src
             image = document.createElement('img')
-            image.crossorigin = "anonymous"
+            image.crossOrigin = "anonymous"
             image.src = image_src
             document.body.appendChild(image)
             /*fetch(image.src).then(res => {
