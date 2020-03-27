@@ -37,14 +37,18 @@
           iframe.contentWindow.document.close();
           iframe.onload = function() {
             image = iframe.contentWindow.document.getElementById("screenshot-image")
-            fetch(image.src).then(res => {
+            image = document.createElement('img')
+            image.crossorigin = "anonymous"
+            image.src = image.src
+            document.body.appendChild(image)
+            /*fetch(image.src).then(res => {
               res.blob().then(blob => {
                 image_url = URL.createObjectURL(blob)
                 image = document.createElement('img')
                 image.src = image_url
                 document.body.appendChild(image)
               })
-            })
+            })*/
           }
         })
       });
