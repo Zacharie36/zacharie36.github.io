@@ -6,7 +6,7 @@
     <script type="text/javascript">
       fetch("https://random-word-api.herokuapp.com/word?number=1").then(response => {
         response.json().then(json => {
-          fetch("https://api.qwant.com/api/search/images?count=50&q="+json[0]+"&t=images&uiv=4&locale=en_US").then(response => {
+          fetch("https://cors-anywhere.herokuapp.com/" + "https://api.qwant.com/api/search/images?count=50&q="+json[0]+"&t=images&uiv=4&locale=en_US").then(response => {
             response.json().then(json => {
               json = json['data']['result']['items']
               images_url = []
