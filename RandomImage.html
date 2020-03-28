@@ -2,7 +2,12 @@
   <head>
     <title></title>
     <meta content="">
-    <style></style>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
     <script type="text/javascript">
       fetch("https://random-word-api.herokuapp.com/word?number=1").then(response => {
         response.json().then(json => {
