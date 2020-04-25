@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script type="text/javascript">
+      fetch("https://random-word-api.herokuapp.com/word?number=1").then(response => {
+        response.json().then(json => {
+          document.body.appendChild(document.createTextNode(json[0]))
+          fetch("https://cors-anywhere.herokuapp.com/" + "https://api.qwant.com/api/search/images?count=50&q="+json[0]+"&t=images&uiv=4&locale=en_US").then(response => {
+            response.json().then(json => {
+              json = json['data']['result']['items']
+              images_url = []
+              for (im of json ) {
+                images_url.push(im.media)
+              }
+              image_url = images_url[Math.floor(Math.random() * images_url.length)]
+
+              image = document.createElement('img')
+              image.src = image_url
+              document.body.appendChild(image)
+            })
+          })
+        })
+      })
+    </script>
+  </head>
+  <body></body>
+</html>
